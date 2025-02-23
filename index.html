@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpermCloud - Liquidy Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #222;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .menu a:hover {
+            color: #00cc99;
+        }
+        .cart {
+            background-color: #00cc99;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-container {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 300px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .remove-item {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-item:hover {
+            background-color: #cc0000;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #00cc99;
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .category:hover {
+            background-color: #009977;
+        }
+        .products {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+        }
+        .add-to-cart {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #00cc99;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background-color: #009977;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SpermCloud</div>
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#">Produkty</a>
+            <a href="#">Kontakt</a>
+            <div class="cart" onclick="toggleCart()">Koszyk (<span id="cart-count">0</span>)</div>
+        </nav>
+    </header>
+    
+    <div class="cart-container" id="cart-container">
+        <h3>Twój Koszyk</h3>
+        <div id="cart-items"></div>
+    </div>
+    <div class="container">
+        <h1>Nasze Liquidy</h1>
+        
+        <div class="categories">
+            <div class="category" onclick="toggleProducts('morskie')">Smaki Morskie</div>
+            <div class="category" onclick="toggleProducts('lesne')">Smaki Leśne</div>
+            <div class="category" onclick="toggleProducts('light')">Smaki Light</div>
+            <div class="category" onclick="toggleProducts('ziemne')">Smaki Ziemne</div>
+            <div class="category" onclick="toggleProducts('techniczne')">Smaki Techniczne</div>
+        </div>
+
+        <div id="morskie" class="products">
+            <div class="product"><h2>Arbuzowe Pierdolnięcie Szał Egzotyczności</h2><button class="add-to-cart" onclick="addToCart('Arbuzowe Pierdolnięcie Szał Egzotyczności')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Żanglony Kiść Korzyści</h2><button class="add-to-cart" onclick="addToCart('Żanglony Kiść Korzyści')">Dodaj do koszyka</button></div>
+        </div>
+
+        <div id="lesne" class="products">
+            <div class="product"><h2>Passion Kurwa Fruit</h2><button class="add-to-cart" onclick="addToCart('Passion Kurwa Fruit')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Mango Mango Mango</h2><button class="add-to-cart" onclick="addToCart('Mango Mango Mango')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Cośtam Cośtam Guava</h2><button class="add-to-cart" onclick="addToCart('Cośtam Cośtam Guava')">Dodaj do koszyka</button></div>
+        </div>
+
+        <div id="light" class="products">
+            <div class="product"><h2>Malinowy Sernik Kurwa Jam</h2><button class="add-to-cart" onclick="addToCart('Malinowy Sernik Kurwa Jam')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Miętowe Pierdolnięcie</h2><button class="add-to-cart" onclick="addToCart('Miętowe Pierdolnięcie')">Dodaj do koszyka</button></div>
+        </div>
+
+        <div id="ziemne" class="products">
+            <div class="product"><h2>Borówkowe Skurwysyny</h2><button class="add-to-cart" onclick="addToCart('Borówkowe Skurwysyny')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Kaktusowy Szram Szureństwa</h2><button class="add-to-cart" onclick="addToCart('Kaktusowy Szram Szureństwa')">Dodaj do koszyka</button></div>
+        </div>
+
+        <div id="techniczne" class="products">
+            <div class="product"><h2>Bananowy Raj</h2><button class="add-to-cart" onclick="addToCart('Bananowy Raj')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Kokosowy Raj</h2><button class="add-to-cart" onclick="addToCart('Kokosowy Raj')">Dodaj do koszyka</button></div>
+        </div>
+    </div>
+
+<script>
+        function toggleProducts(category) {
+            let allProducts = document.querySelectorAll('.products');
+            allProducts.forEach(product => product.style.display = 'none');
+            
+            let selectedProducts = document.getElementById(category);
+            if (selectedProducts) {
+                selectedProducts.style.display = 'flex';
+            }
+        }
+        let cart = {};
+
+        function addToCart(productName) {
+            if (cart[productName]) {
+                cart[productName]++;
+            } else {
+                cart[productName] = 1;
+            }
+            updateCartDisplay();
+        }
+
+        function removeFromCart(productName) {
+            if (cart[productName]) {
+                cart[productName]--;
+                if (cart[productName] <= 0) {
+                    delete cart[productName];
+                }
+            }
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            let cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+            let cartCount = 0;
+            for (let item in cart) {
+                cartCount += cart[item];
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `<span>${item} (${cart[item]})</span> <button class="remove-item" onclick="removeFromCart('${item}')">Usuń</button>`;
+                cartItemsContainer.appendChild(cartItem);
+            }
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+
+        function toggleCart() {
+            let cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
