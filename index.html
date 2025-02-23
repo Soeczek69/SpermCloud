@@ -169,81 +169,82 @@
         </div>
 
         <div id="morskie" class="products">
-            <div class="product"><h2>Arbuzowe Pierdolnięcie Szał Egzotyczności</h2><p>Cena: 23.99 PLN</p><button class="add-to-cart" onclick="addToCart('Arbuzowe Pierdolnięcie Szał Egzotyczności')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Żanglony Kiść Korzyści</h2><p>Cena: 21.99 PLN</p><button class="add-to-cart" onclick="addToCart('Żanglony Kiść Korzyści')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Arbuzowe Pierdolnięcie Szał Egzotyczności</h2><p>Cena: 23.99 PLN</p><button class="add-to-cart" onclick="addToCart('Arbuzowe Pierdolnięcie Szał Egzotyczności', 23.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Żanglony Kiść Korzyści</h2><p>Cena: 21.99 PLN</p><button class="add-to-cart" onclick="addToCart('Żanglony Kiść Korzyści', 21.99)">Dodaj do koszyka</button></div>
         </div>
 
         <div id="lesne" class="products">
-            <div class="product"><h2>Passion Kurwa Fruit</h2><p>Cena: 25.99 PLN</p><button class="add-to-cart" onclick="addToCart('Passion Kurwa Fruit')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Mango Mango Mango</h2><p>Cena: 24.99 PLN</p><button class="add-to-cart" onclick="addToCart('Mango Mango Mango')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Cośtam Cośtam Guava</h2><p>Cena: 26.99 PLN</p><button class="add-to-cart" onclick="addToCart('Cośtam Cośtam Guava')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Passion Kurwa Fruit</h2><p>Cena: 25.99 PLN</p><button class="add-to-cart" onclick="addToCart('Passion Kurwa Fruit', 25.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Mango Mango Mango</h2><p>Cena: 24.99 PLN</p><button class="add-to-cart" onclick="addToCart('Mango Mango Mango', 24.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Cośtam Cośtam Guava</h2><p>Cena: 26.99 PLN</p><button class="add-to-cart" onclick="addToCart('Cośtam Cośtam Guava', 26.99)">Dodaj do koszyka</button></div>
         </div>
 
         <div id="light" class="products">
-            <div class="product"><h2>Malinowy Sernik Kurwa Jam</h2><p>Cena: 34.99 PLN</p><button class="add-to-cart" onclick="addToCart('Malinowy Sernik Kurwa Jam')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Miętowe Pierdolnięcie</h2><p>Cena: 21.00 PLN</p><button class="add-to-cart" onclick="addToCart('Miętowe Pierdolnięcie')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Malinowy Sernik Kurwa Jam</h2><p>Cena: 34.99 PLN</p><button class="add-to-cart" onclick="addToCart('Malinowy Sernik Kurwa Jam', 34.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Miętowe Pierdolnięcie</h2><p>Cena: 21.99 PLN</p><button class="add-to-cart" onclick="addToCart('Miętowe Pierdolnięcie', 21.99)">Dodaj do koszyka</button></div>
         </div>
 
         <div id="ziemne" class="products">
-            <div class="product"><h2>Borówkowe Skurwysyny</h2><p>Cena: 23.99 PLN</p><button class="add-to-cart" onclick="addToCart('Borówkowe Skurwysyny')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Kaktusowy Szram Szureństwa</h2><p>Cena: 33.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kaktusowy Szram Szureństwa')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Borówkowe Skurwysyny</h2><p>Cena: 23.99 PLN</p><button class="add-to-cart" onclick="addToCart('Borówkowe Skurwysyny', 23.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Kaktusowy Szram Szureństwa</h2><p>Cena: 33.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kaktusowy Szram Szureństwa', 33.99)">Dodaj do koszyka</button></div>
         </div>
 
         <div id="techniczne" class="products">
-            <div class="product"><h2>Bananowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Bananowy Raj')">Dodaj do koszyka</button></div>
-            <div class="product"><h2>Kokosowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kokosowy Raj')">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Bananowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Bananowy Raj', 39.99)">Dodaj do koszyka</button></div>
+            <div class="product"><h2>Kokosowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kokosowy Raj', 39.99)">Dodaj do koszyka</button></div>
         </div>
     </div>
 
 <script>
-        function toggleProducts(category) {
-            let allProducts = document.querySelectorAll('.products');
-            allProducts.forEach(product => product.style.display = 'none');
-            
-            let selectedProducts = document.getElementById(category);
-            if (selectedProducts) {
-                selectedProducts.style.display = 'flex';
+    function toggleCart() {
+        let cartContainer = document.getElementById('cart-container');
+        cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+    }
+    function toggleProducts(category) {
+        document.querySelectorAll('.products').forEach(product => product.style.display = 'none');
+        document.getElementById(category).style.display = 'flex';
+    }
+    let cart = {};
+
+    function addToCart(productName, price) {
+        if (cart[productName]) {
+            cart[productName].quantity++;
+        } else {
+            cart[productName] = { price: price, quantity: 1 };
+        }
+        updateCartDisplay();
+    }
+
+    function removeFromCart(productName) {
+        if (cart[productName]) {
+            cart[productName].quantity--;
+            if (cart[productName].quantity <= 0) {
+                delete cart[productName];
             }
         }
-        let cart = {};
+        updateCartDisplay();
+    }
 
-        function addToCart(productName) {
-            if (cart[productName]) {
-                cart[productName]++;
-            } else {
-                cart[productName] = 1;
-            }
-            updateCartDisplay();
-        }
+    function updateCartDisplay() {
+        let cartItemsContainer = document.getElementById('cart-items');
+        cartItemsContainer.innerHTML = '';
+        let cartCount = 0;
+        let totalPrice = 0;
 
-        function removeFromCart(productName) {
-            if (cart[productName]) {
-                cart[productName]--;
-                if (cart[productName] <= 0) {
-                    delete cart[productName];
-                }
-            }
-            updateCartDisplay();
+        for (let item in cart) {
+            cartCount += cart[item].quantity;
+            totalPrice += cart[item].quantity * cart[item].price;
+            let cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `<span>${item} (${cart[item].quantity}) - ${cart[item].price.toFixed(2)} PLN</span> 
+                                  <button class="remove-item" onclick="removeFromCart('${item}')">Usuń</button>`;
+            cartItemsContainer.appendChild(cartItem);
         }
+        document.getElementById('cart-count').innerText = cartCount;
 
-        function updateCartDisplay() {
-            let cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
-            let cartCount = 0;
-            for (let item in cart) {
-                cartCount += cart[item];
-                let cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `<span>${item} (${cart[item]})</span> <button class="remove-item" onclick="removeFromCart('${item}')">Usuń</button>`;
-                cartItemsContainer.appendChild(cartItem);
-            }
-            document.getElementById('cart-count').innerText = cartCount;
-        }
-
-        function toggleCart() {
-            let cartContainer = document.getElementById('cart-container');
-            cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
-        }
+        let totalDisplay = document.createElement('div');
+        totalDisplay.innerHTML = `<h3>Łączna kwota: ${totalPrice.toFixed(2)} PLN</h3>`;
+        cartItemsContainer.appendChild(totalDisplay);        }
     </script>
 </body>
 </html>
