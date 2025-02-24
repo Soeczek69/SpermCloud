@@ -32,6 +32,12 @@
 	header.dark-mode {
 	    background-color: #333;
 	}
+	body.dark-mode .product h2, body.dark-mode .product p {
+	    color: #333;
+	}
+	.product h2, .product p {
+	    color: #333;
+	}
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -75,7 +81,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             text-align: center;
-            z-index: 1000;
+            z-index: 1001;
         }
 	.login-modal.dark-mode {
 	    background-color: #222;
@@ -281,8 +287,6 @@
             <div class="product"><h2>Bananowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Bananowy Raj', 39.99)">Dodaj do koszyka</button></div>
             <div class="product"><h2>Kokosowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kokosowy Raj', 39.99)">Dodaj do koszyka</button></div>
         </div>
-
-    <div class="overlay" id="overlay" onclick="closeCart()"></div>
 
     <div class="overlay" id="overlay" onclick="closeModals()"></div>
 
