@@ -21,7 +21,8 @@
 	}
         header {
             background-color: #222;
-            padding: 20px;
+			height: 70px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -49,7 +50,7 @@
 	    font-weight: 550;
 	    margin-left: 10px;
 	    font-style: italic;
-	    margin-bottom: -8px;
+	    margin-bottom: -9px;
 	}
         .menu {
             display: flex;
@@ -78,6 +79,21 @@
 	    background-color: #008866;
 	    transform: scale(1.1);
         }
+	.clear-cart {
+	    width: 100%;
+	    margin-top: 10px;
+	    padding: 10px;
+	    background-color: #ff4d4d;
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    transition: background 0.3s, transform 0.3s;
+	}
+	.clear-cart:hover {
+	    background-color: #cc0000;
+	    transform: scale(1.05);
+	}
 	.admin-panel {
 	    display: none;
 	    padding: 20px;
@@ -100,23 +116,23 @@
 	    background-color: #009977;
 	}
         /* Okno logowania (modal) */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            text-align: center;
-            z-index: 1001;
+    	.login-modal {
+        	display: none;
+        	position: fixed;
+        	top: 50%;
+        	left: 50%;
+        	transform: translate(-50%, -50%);
+        	background: white;
+        	padding: 20px;
+        	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        	border-radius: 10px;
+        	text-align: center;
+        	z-index: 1001;
         }
-	.login-modal.dark-mode {
-	    background-color: #222;
-	    color: white;
-	}
+		.login-modal.dark-mode {
+	    	background-color: #222;
+	    	color: white;
+		}
         .login-modal input {
             width: 90%;
             padding: 10px;
@@ -146,21 +162,21 @@
         .login-modal .cancel-btn:hover {
             background-color: #cc0000;
         }
-	.dark-mode-toggle {
-	    cursor: pointer;
-	    padding: 10px;
-	    background-color: #00cc99;
-	    color: white;
-	    border: none;
-	    border-radius: 5px;
-	    margin-left: auto;
-	    margin-right: 20px;
-	    transition: transform 0.3s ease, background-color 0.3s ease;
-	}
-	.dark-mode-toggle:hover {
-	    background-color: #009977;
-	    transform: scale(1.1);
-	}
+		.dark-mode-toggle {
+	    	cursor: pointer;
+	    	padding: 10px;
+	    	background-color: #00cc99;
+	    	color: white;
+	    	border: none;
+	    	border-radius: 5px;
+	    	margin-left: auto;
+	    	margin-right: 20px;
+	    	transition: transform 0.3s ease, background-color 0.3s ease;
+		}
+		.dark-mode-toggle:hover {
+	   		background-color: #009977;
+	    	transform: scale(1.1);
+		}
         .overlay {
             display: none;
             position: fixed;
@@ -181,12 +197,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 300px;
-	    z-index: 1001;
+	    	z-index: 1001;
         }
-	.cart-container.dark-mode {
-	    background-color: #222;
-	    color: white;
-	}
+		.cart-container.dark-mode {
+	    	background-color: #222;
+	    	color: white;
+		}
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -200,11 +216,11 @@
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
-	    transition: transform 0.3s ease, background-color 0.3s ease;
+	    	transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .remove-item:hover {
             background-color: #cc0000;
-	    transform: scale(1.1);
+	    	transform: scale(1.1);
         }
         .container {
             padding: 20px;
@@ -215,7 +231,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-	    margin-top: 20px;
+	    	margin-top: 20px;
         }
         .category {
             cursor: pointer;
@@ -224,11 +240,11 @@
             color: white;
             border-radius: 5px;
             transition: transform 0.3s ease, background-color 0.3s ease;
-	    white-space: nowrap;
+	    	white-space: nowrap;
         }
         .category:hover {
             background-color: #009977;
-	    transform: scale(1.1);
+	    	transform: scale(1.1);
         }
         .products {
             display: none;
@@ -236,8 +252,8 @@
             justify-content: center;
             gap: 20px;
             margin-top: 20px;
-	    opacity: 0;
-	    transition: opacity 0.5s ease-in-out;
+	    	opacity: 0;
+	    	transition: opacity 0.5s ease-in-out;
         }
 	.products.show {
 	    display: flex;
@@ -269,13 +285,44 @@
             background-color: #009977;
 	    transform: scale(1.1);
         }
+	.message-container {
+	    position: fixed;
+	    top: 70px;
+	    left: 50%;
+	    transform: translateX(-50%);
+        width: auto;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    gap: 10px;
+	    z-index: 1000;
+	}
+	.message-box {
+	    background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        font-size: 16px;
+        max-width: 300px;
+        text-align: center;
+        word-wrap: break-word;
+        white-space: hidden;
+        text-overflow: ellipsis;
+	}
+	.message-box.hidden {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	    
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-	    SpermCloud
-	    <span class="tagline">Najbardziej Kremowe Liquidy na Świecie</span>
+        <div class="logo">SpermCloud <span class="tagline">Najbardziej Kremowe Liquidy na Świecie</span>
 	</div>
         <nav class="menu">
             <a href="#">Home</a>
@@ -291,7 +338,10 @@
     <div class="cart-container" id="cart-container">
         <h3>Twój Koszyk</h3>
         <div id="cart-items"></div>
+	<button class="clear-cart" onclick="clearCart()">Usuń wszystko</button>
     </div>
+
+    <div id="message-container" class="message-container"></div>
 
     <div class="container">
         <h1>Nasze Liquidy</h1>
@@ -386,7 +436,7 @@
 		console.log("Zalogowano jako admin");
 		localStorage.setItem("isLoggedIn", "true");
 		localStorage.setItem("loggedInUser", username);
-		alert("Zalogowano jako administrator!");
+		showMessage("Zalogowano jako administrator!");
 
 		document.getElementById("admin-panel").style.display = "block";
 		closeModals();
@@ -400,7 +450,7 @@
 		localStorage.setItem("isLoggedIn", "true");
 		localStorage.setItem("loggedInUser", username);
 
-		alert(`Zalogowano pomyślnie jako ${username}`);
+		showMessage(`Zalogowano pomyślnie jako ${username}`);
 
 		if (username === adminCredentials.username) {
 		    document.getElementById("admin-panel").style.display = "block";
@@ -410,7 +460,7 @@
 		updateLoginLogoutButtons();
 	    } else {
 		console.log("Błędny login lub hasło!");
-		alert("Błędny login lub hasło!");
+		showMessage("Błędny login lub hasło!");
 	    }
 	}
 
@@ -443,7 +493,7 @@
 	    localStorage.removeItem("loggedInUser");
 
 	    document.getElementById("admin-panel").style.display = "none";
-	    alert("Zostałeś wylogowany!");
+	    showMessage("Zostałeś wylogowany!");
 
 	    updateLoginLogoutButtons();
 	}
@@ -461,7 +511,7 @@
 
 	    document.getElementById("admin-panel").style.display = "none";
 
-	    alert("Zostałeś wylogowany!");
+	    showMessage("Zostałeś wylogowany!");
 	    toggleLoginLogout();
 	}
 
@@ -525,21 +575,21 @@
             let password = document.getElementById("register-password").value;
 
             if (!username || !password) {
-                alert("Proszę wypełnić wszystkie pola!");
+                showMessage("Proszę wypełnić wszystkie pola!");
                 return;
             }
 
             let users = JSON.parse(localStorage.getItem('users')) || {};
 
 	    if (users[username]) {
-		alert("Taka nazwa użytkownika już istnieje!");
+		showMessage("Taka nazwa użytkownika już istnieje!");
 		return
             }
 
             users[username] = { password: password };
 	    localStorage.setItem('users', JSON.stringify(users));
 
-            alert("Rejestracja zakończona sukcesem! Teraz możesz się zalogować.");
+            showMessage("Rejestracja zakończona sukcesem! Teraz możesz się zalogować.");
             switchToLogin();
         }
 
@@ -547,10 +597,10 @@
 	function addProduct() {
     	   const name = document.getElementById("product-name").value.trim();
     	   const price = document.getElementById("product-price").value.trim();
-    	   const category = document.getElementById("product-category").value; // Pobieramy kategorię
+    	   const category = document.getElementById("product-category").value;
 
     	   if (!name || !price || isNaN(price)) {
-        	alert("Proszę podać poprawną nazwę i cenę produktu!");
+        	showMessage("Proszę podać poprawną nazwę i cenę produktu!");
         	return;
     	   }
 
@@ -558,7 +608,7 @@
 
 	   const existingProduct = products.find(p => p.name === name && p.category === category);
 	   if (existingProduct) {
-		alert("Taki produkt już istnieje w tej kategorii!");
+		showMessage("Taki produkt już istnieje w tej kategorii!");
 		return;
 	   }
 
@@ -573,7 +623,7 @@
 
 	   displayProduct(newProduct);
 
-	   alert(`Produkt "${name}" dodany do kategorii "${category}"!`);
+	   showMessage(`Produkt "${name}" dodany do kategorii "${category}"!`);
 	}
 
     function displayProduct(product) {
@@ -597,9 +647,9 @@
 	const price = document.getElementById("product-price").value;
 
 	if (name && price) {
-	    alert("Cena produktu " + name + " została zmieniona na: " + price + " PLN");
+	    showMessage("Cena produktu " + name + " została zmieniona na: " + price + " PLN");
 	} else {
-	    alert("Proszę wypełnić wszystkie pola!");
+	    showMessage("Proszę wypełnić wszystkie pola!");
 	}
     }
 
@@ -607,9 +657,9 @@
 	const name = document.getElementById("product-name").value;
 
 	if (name) {
-	    alert("Product " + name + " został usunięty.");
+	    showMessage("Product " + name + " został usunięty.");
 	} else {
-	    alert("Proszę podać nazwę produktu.");
+	    showMessage("Proszę podać nazwę produktu.");
 	}
     }
 
@@ -694,6 +744,38 @@
         totalDisplay.innerHTML = `<h3>Łączna kwota: ${totalPrice.toFixed(2)} PLN</h3>`;
         cartItemsContainer.appendChild(totalDisplay);
         }
-    </script>
+
+    function clearCart() {
+	cart = {};
+	updateCartDisplay();
+	showMessage("Koszyk został opróżniony");
+    }
+
+    function showMessage(text, duration = 3000) {
+		const container = document.getElementById("message-container");
+
+		const message = document.createElement("div");
+		message.classList.add("message-box");
+		message.innerText = text;
+
+		container.appendChild(message);
+
+        setTimeout(() => {
+            message.style.opacity = "1";
+            message.style.transform = "translateY(0)";
+        }, 50);
+
+		setTimeout(() => {
+	    	message.classList.add("hidden");
+	    	setTimeout(() => {
+				message.remove();
+	    	}, 500);
+		}, duration);
+
+		while (container.children.length > 3) {
+	    	container.removeChild(container.firstChild)
+		}
+    }
+</script>
 </body>
 </html>
