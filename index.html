@@ -45,6 +45,11 @@
 	    display: flex;
 	    align-items: center;
         }
+        .subtext {
+            font-size: 14px;
+            margin-left: 10px;
+            color: #ddd;
+        }
 	.tagline {
 	    font-size: 12px;
 	    font-weight: 550;
@@ -96,25 +101,43 @@
 	}
 	.admin-panel {
 	    display: none;
-	    padding: 20px;
-	    background-color: #f1f1f1;
-	    color: #333;
-	    margin-top: 20px;
+	    position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #2a2a2a;
+        padding: 8px 15px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 999;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border: 1px solid #555;
 	}
-	.admin-panel input, .admin-panel button {
-	    padding: 10px;
-	    margin: 5px;
-	    font-size: 16px;
+	.admin-panel input, .admin-panel select {
+	    padding: 6px;
+	    font-size: 14px;
+        border: 1px solid #666;
+        background-color: #222;
+        color: white;
+        border-radius: 5px;
+        width: 120px;
 	}
 	.admin-panel button {
-	    cursor: pointer;
 	    background-color: #00cc99;
 	    color: white;
 	    border: none;
+        padding: 6px 10px;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.2s ease;
 	}
 	.admin-panel button:hover {
 	    background-color: #009977;
-	}
+        transform: scale(1.05);
+    }
         /* Okno logowania (modal) */
     	.login-modal {
         	display: none;
@@ -185,7 +208,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            z-index: 1000;
         }
         .cart-container {
             display: none;
@@ -317,20 +340,55 @@
 		opacity: 0;
 		transform: translateY(-20px);
 	}
-	    
+	.checkout-button {
+        background-color: #00cc99;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+    }
+    .checkout-button:hover {
+        background-color: #009977;
+        transform: scale(1.05);
+    }
+
     </style>
 </head>
 <body>
     <header>
         <div class="logo">SpermCloud <span class="tagline">Najbardziej Kremowe Liquidy na Świecie</span>
 	</div>
+
+    <h2>Panel Admina</h2>
+
+	<input type="text" id="product-name" placeholder="Nazwa produktu">
+	<input type="number" id="product-price" placeholder="Cena produktu">
+
+	<select id= "product-category">
+            <option value="morskie">Smaki Morskie</option>
+            <option value="lesne">Smaki Leśne</option>
+            <option value="light">Smaki Light</option>
+            <option value="ziemne">Smaki Ziemne</option>
+            <option value="techniczne">Smaki Techniczne</option>
+	</select>
+	<button onclick="addProduct()">Dodaj produkt</button>
+	<button onclick="removeProduct()">Usuń produkt</button>
+	<button onclick="editProduct()">Edytuj cenę</button>
+	<button onclick="logout()">Wyloguj</button>
+    </div>
+
         <nav class="menu">
             <a href="#">Home</a>
             <a href="#">Produkty</a>
-            <a href="#">Kontakt</a>
-	    <a href="#" id="login-link" onclick="openLoginModal(); return false;">Zaloguj</a>
-	    <a href="#" id="logout-link" style="display: none;" onclick="logout(); return false;">Wyloguj</a>
-	    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Tryb ciemny</button>
+            <a href="https://postimg.cc/62NxrGTK">Kontakt</a>
+	        <a href="#" id="login-link" onclick="openLoginModal(); return false;">Zaloguj</a>
+	        <a href="#" id="logout-link" style="display: none;" onclick="logout(); return false;">Wyloguj</a>
+	        <button class="dark-mode-toggle" onclick="toggleDarkMode()">Tryb ciemny</button>
             <div class="cart" onclick="toggleCart()">Koszyk (<span id="cart-count">0</span>)</div>
         </nav>
     </header>
@@ -338,6 +396,7 @@
     <div class="cart-container" id="cart-container">
         <h3>Twój Koszyk</h3>
         <div id="cart-items"></div>
+        <button id="checkout-button" onclick="checkout()">Zapłać</button>
 	<button class="clear-cart" onclick="clearCart()">Usuń wszystko</button>
     </div>
 
@@ -383,32 +442,14 @@
     <div class="overlay" id="overlay" onclick="closeModals()"></div>
 
     <div class="admin-panel" id="admin-panel">
-	<h2>Panel Admina</h2>
-
-	<input type="text" id="product-name" placeholder="Nazwa produktu">
-	<input type="number" id="product-price" placeholder="Cena produktu">
-
-	<select id= "product-category">
-            <option value="morskie">Smaki Morskie</option>
-            <option value="lesne">Smaki Leśne</option>
-            <option value="light">Smaki Light</option>
-            <option value="ziemne">Smaki Ziemne</option>
-            <option value="techniczne">Smaki Techniczne</option>
-	</select>
-
-	<button onclick="addProduct()">Dodaj produkt</button>
-	<button onclick="removeProduct()">Usuń produkt</button>
-	<button onclick="editProduct()">Edytuj cenę</button>
-	<button onclick="logout()">Wyloguj</button>
-    </div>
 
     <div class="login-modal" id="login-modal">
-	<h2>Zaloguj się</h2>
-	<input type="text" id="login-username" placeholder="Login">
-	<input type="password" id="login-password" placeholder="Hasło">
-	<br>
-	<button class="login-btn" onclick="login()">Zaloguj</button>
-	<button class="cancel-btn" onclick="closeModals()">Anuluj</button>
+	    <h2>Zaloguj się</h2>
+	    <input type="text" id="login-username" placeholder="Login">
+	    <input type="password" id="login-password" placeholder="Hasło">
+	    <br>
+	    <button class="login-btn" onclick="login()">Zaloguj</button>
+	    <button class="cancel-btn" onclick="closeModals()">Anuluj</button>
 	<p>Nie masz konta? <a href="#" onclick="switchToRegister()">Zarejestruj się</a></p>
     </div>
 
@@ -548,17 +589,6 @@
 		toggleDarkMode();
 	    }
 	}
-
-        function openLoginModal() {
-            document.getElementById("login-modal").style.display = "block";
-            document.getElementById("overlay").style.display = "block";
-        }
-
-        function closeModals() {
-	    document.getElementById("login-modal").style.display = "none";
-	    document.getElementById("register-modal").style.display = "none";
-	    document.getElementById("overlay").style.display = "none";
-        }
 
         function switchToRegister() {
             document.getElementById("login-modal").style.display = "none";
@@ -776,6 +806,27 @@
 	    	container.removeChild(container.firstChild)
 		}
     }
+    function checkout() {
+        window.location.href = "https://cdn.discordapp.com/attachments/1155874036446929041/1343648521147908189/mqdefault.png?ex=67be09b3&is=67bcb833&hm=5f2459cb782dcb24c78a494ce40e971433030c31faeab5cce4f989cb6c037d83&";
+    } 
+
+    document.addEventListener("DOMContentLoaded", function setupEventListeners() {
+        document.getElementById("login-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            openLoginModal();
+        });
+    });
+
+    function openLoginModal() {
+        document.getElementById("login-modal").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeModals() {
+        document.getElementById("login-modal").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    }
+
 </script>
 </body>
 </html>
