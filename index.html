@@ -41,7 +41,16 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+	    display: flex;
+	    align-items: center;
         }
+	.tagline {
+	    font-size: 12px;
+	    font-weight: 550;
+	    margin-left: 10px;
+	    font-style: italic;
+	    margin-bottom: -8px;
+	}
         .menu {
             display: flex;
             align-items: center;
@@ -144,11 +153,13 @@
 	    color: white;
 	    border: none;
 	    border-radius: 5px;
-	    margin-left: 15px;
-	    transition: background 0.3s;
+	    margin-left: auto;
+	    margin-right: 20px;
+	    transition: transform 0.3s ease, background-color 0.3s ease;
 	}
 	.dark-mode-toggle:hover {
 	    background-color: #009977;
+	    transform: scale(1.1);
 	}
         .overlay {
             display: none;
@@ -262,7 +273,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">SpermCloud</div>
+        <div class="logo">
+	    SpermCloud
+	    <span class="tagline">Najbardziej Kremowe Liquidy na Świecie</span>
+	</div>
         <nav class="menu">
             <a href="#">Home</a>
             <a href="#">Produkty</a>
