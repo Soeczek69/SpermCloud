@@ -6,13 +6,19 @@
     <title>SpermCloud - Liquidy Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
             color: #333;
+	    transition: background 0.5s, color 0.5s;
         }
+	body.dark-mode {
+	    background-color: #121212;
+	    color: #f1f1f1;
+	}
         header {
             background-color: #222;
             padding: 20px;
@@ -21,7 +27,11 @@
             align-items: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: white;
+	    transition: background 0.5s;
         }
+	header.dark-mode {
+	    background-color: #333;
+	}
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -53,6 +63,76 @@
 	    background-color: #008866;
 	    transform: scale(1.1);
         }
+        /* Okno logowania (modal) */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+	.login-modal.dark-mode {
+	    background-color: #222;
+	    color: white;
+	}
+        .login-modal input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-modal button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login-modal .login-btn {
+            background-color: #00cc99;
+            color: white;
+        }
+        .login-modal .cancel-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .login-modal .login-btn:hover {
+            background-color: #009977;
+        }
+        .login-modal .cancel-btn:hover {
+            background-color: #cc0000;
+        }
+	.dark-mode-toggle {
+	    cursor: pointer;
+	    padding: 10px;
+	    background-color: #00cc99;
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    margin-left: 15px;
+	    transition: background 0.3s;
+	}
+	.dark-mode-toggle:hover {
+	    background-color: #009977;
+	}
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
         .cart-container {
             display: none;
             position: fixed;
@@ -63,7 +143,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 300px;
+	    z-index: 1001;
         }
+	.cart-container.dark-mode {
+	    background-color: #222;
+	    color: white;
+	}
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -149,6 +234,8 @@
             <a href="#">Home</a>
             <a href="#">Produkty</a>
             <a href="#">Kontakt</a>
+	    <a href="#" onclick="openLoginModal(); return false;">Zaloguj</a>
+	    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Tryb ciemny</button>
             <div class="cart" onclick="toggleCart()">Koszyk (<span id="cart-count">0</span>)</div>
         </nav>
     </header>
@@ -157,6 +244,7 @@
         <h3>Twój Koszyk</h3>
         <div id="cart-items"></div>
     </div>
+
     <div class="container">
         <h1>Nasze Liquidy</h1>
         
@@ -193,17 +281,138 @@
             <div class="product"><h2>Bananowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Bananowy Raj', 39.99)">Dodaj do koszyka</button></div>
             <div class="product"><h2>Kokosowy Raj</h2><p>Cena: 39.99 PLN</p><button class="add-to-cart" onclick="addToCart('Kokosowy Raj', 39.99)">Dodaj do koszyka</button></div>
         </div>
+
+    <div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+    <div class="overlay" id="overlay" onclick="closeModals()"></div>
+
+    <div class="login-modal" id="login-modal">
+	<h2>Zaloguj się</h2>
+	<input type="text" id="login-username" placeholder="Login">
+	<input type="password" id="login-password" placeholder="Hasło">
+	<br>
+	<button class="login-btn" onclick="login()">Zaloguj</button>
+	<button class="cancel-btn" onclick="closeModals()">Anuluj</button>
+	<p>Nie masz konta? <a href="#" onclick="switchToRegister()">Zarejestruj się</a></p>
     </div>
 
-<script>
+    <div class="login-modal" id="register-modal">
+	<h2>Rejestracja</h2>
+	<input type="text" id="register-username" placeholder="Wybierz login">
+	<input type="password" id="register-password" placeholder="Wybierz hasło">
+	<br>
+	<button class="login-btn" onclick="register()">Zarejestruj</button>
+	<button class="cancel-btn" onclick="closeModals()">Anuluj</button>
+	<p>Masz już konto? <a href="#" onclick="switchToLogin()">Zaloguj się</a></p>
+    </div>
+
+    <script>
+
+	function toggleDarkMode() {
+	    let header = document.querySelector("header");
+	    if (header) {
+		header.classList.toggle('dark-mode');
+	    }
+
+	    document.body.classList.toggle('dark-mode');
+	    document.getElementById("login-modal").classList.toggle('dark-mode');
+	    document.getElementById("register-modal").classList.toggle('dark-mode');
+	    document.getElementById("cart-container").classList.toggle('dark-mode');
+
+	    let darkMode = document.body.classList.contains('dark-mode');
+	    localStorage.setItem('darkMode', darkMode);
+	}
+
+	function loadDarkMode() {
+	    let darkMode = localStorage.getItem('darkMode') === 'true';
+	    if (darkMode) {
+		toggleDarkMode();
+	    }
+	}
+
+        function openLoginModal() {
+            document.getElementById("login-modal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeModals() {
+	    document.getElementById("login-modal").style.display = "none";
+	    document.getElementById("register-modal").style.display = "none";
+	    document.getElementById("overlay").style.display = "none";
+        }
+
+        function switchToRegister() {
+            document.getElementById("login-modal").style.display = "none";
+            document.getElementById("register-modal").style.display = "block";
+        }
+
+        function switchToLogin() {
+            document.getElementById("register-modal").style.display = "none";
+            document.getElementById("login-modal").style.display = "block";
+        }
+
+        function register() {
+            let username = document.getElementById("register-username").value;
+            let password = document.getElementById("register-password").value;
+
+            if (!username || !password) {
+                alert("Proszę wypełnić wszystkie pola!");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || {};
+	    if (users[username]) {
+		alert("Taka nazwa użytkownika już istnieje!");
+		return
+            }
+
+            users[username] = { password: password };
+	    localStorage.setItem('users', JSON.stringify(users));
+            alert("Rejestracja zakończona sukcesem! Teraz możesz się zalogować.");
+            switchToLogin();
+        }
+
+        function login() {
+            let username = document.getElementById("login-username").value;
+            let password = document.getElementById("login-password").value;
+
+            let users = JSON.parse(localStorage.getItem('users')) || {};
+	    if (!users[username] || users[username].password !== password) {
+		alert("Błędny login lub hasło!");
+		return;
+	    }
+
+                alert("Zalogowano pomyślnie!");
+                closeModals();
+        }
+
     function toggleCart() {
         let cartContainer = document.getElementById('cart-container');
-        cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+        let computedStyle = window.getComputedStyle(cartContainer).display;
+
+	if (computedStyle === 'none') {
+	    cartContainer.style.display = 'block';
+	    document.getElementById("overlay").style.display = "block";
+	} else {
+	    closeCart();
+	}
     }
+
+    function closeCart() {
+	document.getElementById("cart-container").style.display = "none";
+	document.getElementById("overlay").style.display = "none";
+    }
+
+    document.getElementById("overlay").addEventListener("click", closeCart);
+
     function toggleProducts(category) {
         document.querySelectorAll('.products').forEach(product => product.style.display = 'none');
-        document.getElementById(category).style.display = 'flex';
+        let selectedProducts = document.getElementById(category);
+	if (selectedProducts) {
+	    selectedProducts.style.display = 'flex';
+	}
     }
+
     let cart = {};
 
     function addToCart(productName, price) {
@@ -244,7 +453,8 @@
 
         let totalDisplay = document.createElement('div');
         totalDisplay.innerHTML = `<h3>Łączna kwota: ${totalPrice.toFixed(2)} PLN</h3>`;
-        cartItemsContainer.appendChild(totalDisplay);        }
+        cartItemsContainer.appendChild(totalDisplay);
+        }
     </script>
 </body>
 </html>
